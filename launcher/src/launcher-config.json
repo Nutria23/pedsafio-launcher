@@ -1,0 +1,4 @@
+{
+  "remoteUrl": "https://raw.githubusercontent.com/Nutria23/pedsafio-launcher/main/backend/config.json",
+  "statusUrl": "https://api.turest.midominio.com/api/status"
+}

@@ -1,0 +1,18 @@
+{
+  "timestamp": 1783892279137,
+  "filesCount": 2,
+  "files": [
+    {
+      "path": "https://archive.org/download/instance-admin/instance.zip.enc",
+      "size": 3728288672,
+      "hash": "50b64f60e4b95a719c1655f5bb41db58eadcd004baae5412cedcffe2cc2336d6",
+      "adminOnly": false
+    },
+    {
+      "path": "https://archive.org/download/instance-admin/instance-admin.zip.enc",
+      "size": 4940389376,
+      "hash": "711bea897ed6e6624193b41010f750b292771715ce7a4d2263de1b04a0a3a100",
+      "adminOnly": true
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedsafio Launcher</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  
+  <div class="window-container" id="window-container">
+    
+    <!-- Custom Draggable Title Bar -->
+    <header class="title-bar">
+      <div class="title-bar-drag">
+        <span class="app-title">Pedsafio Launcher v1.0</span>
+      </div>
+      <div class="window-controls">
+        <button class="win-btn" id="btn-minimize" title="Minimizar">
+          <i class="fa-solid fa-minus"></i>
+        </button>
+        <button class="win-btn" id="btn-maximize" title="Maximizar">
+          <i class="fa-regular fa-square"></i>
+        </button>
+        <button class="win-btn close" id="btn-close" title="Cerrar">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- App Body Area -->
+    <div class="app-body">
+      
+      <!-- Sidebar Navigation (Hidden in login screen) -->
+      <aside class="app-sidebar" id="app-sidebar" style="display: none;">
+        <div class="sidebar-top">
+          <div class="sidebar-logo-btn active" id="btn-nav-home" title="Inicio">
+            <img src="../resources/logo.png" alt="Logo" class="sidebar-logo-img" id="sidebar-logo">
+          </div>
+          <div class="sidebar-btn" id="btn-nav-folder" title="Abrir carpeta de mods">
+            <i class="fa-regular fa-folder-open"></i>
+          </div>
+          <div class="sidebar-btn" id="btn-nav-settings" title="Ajustes">
+            <i class="fa-solid fa-gear"></i>
+          </div>
+          <div class="sidebar-btn" id="btn-nav-console" title="Consola de Logs">
+            <i class="fa-solid fa-terminal"></i>
+          </div>
+        </div>
+        <div class="sidebar-bottom">
+          <div class="sidebar-profile-btn" id="btn-nav-profile" title="Cerrar sesión / Cuenta">
+            <i class="fa-regular fa-user"></i>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Contents (Dynamic Views) -->
+      <main class="content-viewport" id="content-viewport">
+        
+        <!-- Background Wallpaper overlay -->
+        <div class="background-overlay" id="launcher-bg"></div>
+
+        <!-- 1. LOGIN SCREEN -->
+        <div class="view-pane active" id="view-login">
+          <div class="login-center">
+            
+            <img src="../resources/logo.png" alt="Pedsafio Logo" class="brand-logo animate-float" id="login-brand-logo">
+            <h1 class="brand-title">PEDSAFIO</h1>
+            <p class="brand-subtitle" id="login-brand-version">Cargando versión del servidor...</p>
+
+            <!-- Login Card -->
+            <div class="login-card">
+              <div class="login-tabs">
+                <button class="tab-btn" id="tab-login-microsoft">
+                  <i class="fa-brands fa-microsoft"></i> Cuenta Microsoft
+                </button>
+                <button class="tab-btn active" id="tab-login-offline">
+                  <i class="fa-regular fa-user"></i> Sin cuenta
+                </button>
+              </div>
+
+              <!-- Offline Login Box -->
+              <div class="login-tab-content" id="content-login-offline">
+                <p class="tab-description">Ingresá tu nick para jugar sin cuenta.</p>
+                <div class="input-wrapper">
+                  <input type="text" id="input-username" placeholder="TuNick" maxlength="16" required>
+                </div>
+                <button class="btn-submit" id="btn-submit-offline">Entrar</button>
+              </div>
+
+              <!-- Microsoft Login Box -->
+              <div class="login-tab-content" id="content-login-microsoft" style="display: none;">
+                <p class="tab-description">Iniciá sesión con tu cuenta oficial de Minecraft.</p>
+                <button class="btn-submit btn-microsoft" id="btn-submit-microsoft">
+                  <i class="fa-brands fa-microsoft"></i> Iniciar sesión con Microsoft
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 2. DASHBOARD / PLAY SCREEN -->
+        <div class="view-pane" id="view-dashboard">
+          <!-- Server Status Indicator -->
+          <div class="server-status-pill">
+            <span class="status-indicator-dot online" id="dash-status-dot"></span>
+            <span class="status-indicator-text" id="dash-status-text">IP PROTEGIDA · En línea</span>
+          </div>
+
+          <div class="dashboard-center">
+            <img src="../resources/logo.png" alt="Pedsafio Logo" class="dashboard-logo" id="dash-brand-logo">
+            <h1 class="brand-title">PEDSAFIO</h1>
+            <p class="player-greeting" style="display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 10px;">
+              Jugando como <strong id="dash-player-name">NahuDmC</strong>
+              <span id="player-role-badge" class="role-badge user">JUGADOR</span>
+            </p>
+            <p class="modpack-version-display" style="font-size: 11px; color: var(--text-muted); margin-top: 4px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 4px;">
+              <i class="fa-solid fa-code-branch" style="color: var(--accent);"></i> Versión de Mods: <span id="dash-mods-version" style="color: var(--text-main); font-weight: 600;">Cargando...</span>
+            </p>
+
+            <!-- Play & Update Actions -->
+            <div class="action-zone">
+              <button class="btn-play" id="btn-action-play">
+                <i class="fa-solid fa-play"></i> JUGAR
+              </button>
+
+              <!-- Progress bar (Overlay or separate) -->
+              <div class="progress-container hidden" id="update-progress-container">
+                <div class="progress-bar-track">
+                  <div class="progress-bar-fill" id="update-progress-fill" style="width: 0%;"></div>
+                </div>
+                <div class="progress-stats">
+                  <span id="update-progress-status">Actualizando mods...</span>
+                  <span id="update-progress-details">0% · 0 MB/s · Quedan --s</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 3. OVERLAY: SETTINGS PANEL -->
+        <div class="overlay-modal" id="overlay-settings">
+          <div class="modal-card">
+            <header class="modal-header">
+              <h3><i class="fa-solid fa-sliders"></i> Ajustes del Cliente</h3>
+              <button class="modal-close-btn" id="btn-close-settings">&times;</button>
+            </header>
+            
+            <div class="modal-body">
+              
+              <div class="settings-group">
+                <label>Memoria RAM Asignada</label>
+                <div class="ram-slider-wrapper">
+                  <input type="range" id="settings-ram-slider" min="1024" max="16384" step="1024" value="4096">
+                  <span id="settings-ram-label">4.0 GB (4096 MB)</span>
+                </div>
+                <span class="setting-desc">Recomendado: 4GB - 8GB para packs con mods.</span>
+              </div>
+
+              <div class="settings-group">
+                <label for="settings-java-path">Ruta del ejecutable Java</label>
+                <div class="input-browse-wrapper">
+                  <input type="text" id="settings-java-path" placeholder="Automático (Recomendado)">
+                </div>
+                <span class="setting-desc">Deja en blanco para buscar automáticamente o descargar el JDK compatible.</span>
+              </div>
+
+              <div class="settings-group-row">
+                <div class="settings-group">
+                  <label for="settings-res-width">Ancho de pantalla</label>
+                  <input type="number" id="settings-res-width" placeholder="1024">
+                </div>
+                <div class="settings-group">
+                  <label for="settings-res-height">Alto de pantalla</label>
+                  <input type="number" id="settings-res-height" placeholder="768">
+                </div>
+              </div>
+
+              <div class="settings-group toggle-item">
+                <label for="settings-fullscreen">Pantalla Completa</label>
+                <input type="checkbox" id="settings-fullscreen">
+              </div>
+
+              <div class="settings-group">
+                <label for="settings-jvm-args">Argumentos JVM del Cliente</label>
+                <input type="text" id="settings-jvm-args" placeholder="-XX:+UseG1GC ...">
+                <span class="setting-desc">Argumentos adicionales inyectados tras los ajustes del servidor.</span>
+              </div>
+
+              <div class="settings-group">
+                <label for="settings-game-folder">Carpeta de Instalación de Minecraft</label>
+                <input type="text" id="settings-game-folder" readonly>
+                <span class="setting-desc">Los archivos se almacenan en la carpeta asignada para no interferir con otras instalaciones.</span>
+              </div>
+
+              <div class="settings-group">
+                <label for="settings-git-token">Token de GitHub para Desarrollo (Opcional)</label>
+                <input type="password" id="settings-git-token" placeholder="ghp_...">
+                <span class="setting-desc">Aumenta el límite de peticiones de GitHub API a 5000/hora para desarrollo/pruebas instantáneas.</span>
+              </div>
+
+            </div>
+            
+            <footer class="modal-footer">
+              <button class="btn-save" id="btn-save-settings">Guardar Ajustes</button>
+            </footer>
+          </div>
+        </div>
+
+        <!-- 4. OVERLAY: LOGS CONSOLE -->
+        <div class="overlay-modal" id="overlay-console">
+          <div class="modal-card console-card">
+            <header class="modal-header">
+              <h3><i class="fa-solid fa-terminal"></i> Consola del Launcher</h3>
+              <div class="header-actions">
+                <button class="btn-clear-logs" id="btn-clear-logs">Limpiar</button>
+                <button class="modal-close-btn" id="btn-close-console">&times;</button>
+              </div>
+            </header>
+            <div class="modal-body console-body" id="console-logs-container">
+              <div class="log-line info">[Launcher] Inicializando Pedsafio Launcher v1.0.0...</div>
+            </div>
+          </div>
+        </div>
+
+      </main>
+
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+{
+  "launcherVersion": "1.0.0",
+  "minecraftVersion": "1.20.1",
+  "forgeVersion": "47.4.10",
+  "ip": "172.96.172.240",
+  "port": 25530,
+  "maintenance": false,
+  "forceUpdate": false,
+  "news": [
+    {
+      "title": "1",
+      "content": "1",
+      "image": "1",
+      "link": "1",
+      "date": "1",
+      "id": "1783885970154"
+    },
+    {
+      "id": "1",
+      "title": "¡Bienvenidos a Pedsafio Hardcore!",
+      "content": "La nueva temporada hardcore ha comenzado. Descarga los nuevos mods e interactúa con otros jugadores en el servidor oficial.",
+      "image": "http://localhost:3000/assets/background.jpg",
+      "date": "12/07/2026",
+      "link": "https://github.com"
+    },
+    {
+      "id": "2",
+      "title": "Actualización de Seguridad",
+      "content": "Hemos implementado verificación de firmas y hashes SHA-256 para proteger tu cliente de juego y optimizar las descargas.",
+      "image": "http://localhost:3000/assets/logo.png",
+      "date": "11/07/2026",
+      "link": "https://github.com"
+    }
+  ],
+  "background": "https://raw.githubusercontent.com/Nutria23/pedsafio-launcher/main/launcher/resources/background.jpg",
+  "logo": "https://raw.githubusercontent.com/Nutria23/pedsafio-launcher/main/launcher/resources/logo.png",
+  "downloadServer": "https://raw.githubusercontent.com/Nutria23/pedsafio-launcher/main/backend/public",
+  "modsVersion": "1.0.1",
+  "jvmArgs": "-XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90",
+  "admins": [
+    "2kny",
+    "alonso_navarro",
+    "harold_unu12",
+    "Tibuidk",
+    "shadowvth",
+    "Danx0504",
+    "miguellon",
+    "SupNovaaa",
+    "CMD_LK"
+  ]
+}
